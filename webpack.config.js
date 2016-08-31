@@ -3,13 +3,15 @@
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: './dist',
-    filename: 'output.js'
+    path: './dist/assets',
+    publicPath: './assets/',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
       { test: /\.html$/, loader: 'vue-template' },
-      { test: /\.css$/, loaders: ['style', 'css?sourceMap'] },
+      { test: /\.css$/, loaders: ['style', 'css'] },
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url',
@@ -32,5 +34,6 @@ module.exports = {
         query: { limit: 10000, mimetype: 'image/svg+xml' }
       }
     ]
-  }
+  },
+  target: 'electron-renderer'
 }

@@ -1,0 +1,89 @@
+<div class="box">
+  <nav class="level">
+    <div class="level-left">
+      <div class="level-item">
+        <h2 class="title">曲のタイトル</h2>
+      </div>
+    </div>
+    <div class="level-right">
+      <a class="level-item" href="#" @click.prevent="like">
+        <span title="お気に入り" class="icon is-small">
+          <icon icon="heart"></icon>
+        </span>
+      </a>
+      <a class="level-item" href="#" @click.prevent="edit">
+        <span title="編集" class="icon is-small"><icon icon="pencil"></icon></span>
+      </a>
+    </div>
+  </nav>
+  <h3 class="subtitle">曲の説明文</h3>
+
+  <table class="table is-bordered">
+    <thead>
+      <tr>
+        <th>アーティスト</th>
+        <th>掲載号</th>
+        <th>掲載ページ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>モーツァルト</td>
+        <td>2016年1月号</td>
+        <td>30ページ</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table is-bordered">
+    <thead>
+      <tr>
+        <th>難易度</th>
+        <th>エレクトーン</th>
+        <th>ピアノ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>上級</td>
+        <td>3台</td>
+        <td><icon icon="times"></icon></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table is-bordered is-striped">
+    <thead>
+      <tr>
+        <th>パート名</th>
+        <th>上鍵盤</th>
+        <th>下鍵盤</th>
+        <th>足鍵盤</th>
+        <th>リズム</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1パート</td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+      </tr>
+      <tr>
+        <td>2パート</td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="times"></icon></td>
+      </tr>
+      <tr>
+        <td>3パート</td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="circle-o"></icon></td>
+        <td><icon icon="times"></icon></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
