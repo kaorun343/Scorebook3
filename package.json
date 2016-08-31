@@ -6,12 +6,14 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^3.5.1",
     "bulma": "^0.1.2",
     "font-awesome": "^4.6.3",
     "vue": "^2.0.0-rc.4",

@@ -1,0 +1,10 @@
+<aside class="menu">
+  <p class="menu-label">GENERAL</p>
+  <ul class="menu-list">
+    <li v-for="item in general"><a href="#">{{item.title}}</a></li>
+  </ul>
+  <p class="menu-label">ALBUMS</p>
+  <ul class="menu-list">
+    <year v-for="album in albums" :year="album.year" :months="album.months"></year>
+  </ul>
+</aside>
