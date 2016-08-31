@@ -1,9 +1,9 @@
 require('bulma/css/bulma.css')
 // require('animate.css')
 // require('font-awesome/css/font-awesome.min.css')
-import SidebarComponent from './sidebar/sidebar'
+import AppComponent from './app/app'
 import Vue from 'vue'
 
-const Sidebar = Vue.extend(SidebarComponent)
+const App = Vue.extend(AppComponent)
 
-const app = new Sidebar({el: '#app'})
+const app = new App({el: '#app'})
