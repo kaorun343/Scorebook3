@@ -7,13 +7,13 @@ import SongEditor from '../editor/song'
 
 export default require('./app.html')({
   components: { Hero, Sidebar, Song, SongEditor },
-  data() {
+  data () {
     return {
       show: true
     }
   },
   methods: {
-    edit() {
+    edit () {
       this.show = !this.show
     }
   }

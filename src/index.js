@@ -5,4 +5,5 @@ import Vue from 'vue'
 
 const App = Vue.extend(AppComponent)
 
-const app = new App({el: '#app'})
+const app = new App()
+app.$mount('#app')

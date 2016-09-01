@@ -1,7 +1,7 @@
 'use strict'
 
 export default require('./year.html')({
-  data() {
+  data () {
     return {
       show: false
     }

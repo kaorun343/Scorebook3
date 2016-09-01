@@ -5,10 +5,10 @@ export default require('./song.html')({
   name: 'Song',
   props: ['title', 'lead', 'artist', 'year', 'month', 'page', 'piano', 'grade', 'parts'],
   methods: {
-    like() {
+    like () {
       console.log('like')
     },
-    edit() {
+    edit () {
       this.$emit('edit')
     }
   },

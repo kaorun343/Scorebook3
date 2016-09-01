@@ -3,7 +3,7 @@
 export default {
   name: 'Columns',
   functional: true,
-  render(h, {children}) {
+  render (h, { children }) {
     return h('div', {
       staticClass: 'columns'
     }, children)

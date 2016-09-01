@@ -1,30 +1,30 @@
 const electron = require('electron')
-const {app, BrowserWindow} = electron
+const { app, BrowserWindow } = electron
 
-let win;
+let win
 
-function createWindow() {
-  win = new BrowserWindow({width: 800, height: 600});
+function createWindow () {
+  win = new BrowserWindow({ width: 800, height: 600 })
 
-  win.loadURL(`file://${__dirname}/dist/index.html`);
+  win.loadURL(`file://${__dirname}/dist/index.html`)
 
-  win.webContents.openDevTools();
+  win.webContents.openDevTools()
 
   win.on('closed', () => {
-    win = null;
-  });
+    win = null
+  })
 }
 
-app.on('ready', createWindow);
+app.on('ready', createWindow)
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit();
+    app.quit()
   }
-});
+})
 
 app.on('activate', () => {
   if (win === null) {
-    createWindow();
+    createWindow()
   }
-});
+})
