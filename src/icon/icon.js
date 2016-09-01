@@ -5,8 +5,9 @@ export default {
   props: ['icon'],
   render(h, {props: {icon}}) {
     return h('i', {
-      class: ['fa', `fa-${icon}`],
-      domProps: {
+      class: `fa-${icon}`,
+      staticClass: 'fa',
+      attrs: {
         'aria-hidden': true
       }
     }, '')

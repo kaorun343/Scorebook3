@@ -1,36 +1,26 @@
-<div class="columns is-gapless">
-  <div class="column is-one-quarter">
-    <sidebar class="sidebar"></sidebar>
-  </div>
-  <div class="column songs-container">
-    <div class="songs-hero">
-      <hero></hero>
+<div>
+  <div class="columns is-gapless">
+    <div class="column is-one-quarter">
+      <sidebar class="sidebar"></sidebar>
     </div>
-    <div class="songs">
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
-      <song></song>
+    <div class="column songs-container">
+      <div class="songs-hero">
+        <hero></hero>
+      </div>
+      <div class="songs">
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+        <song @edit="edit"></song>
+      </div>
     </div>
   </div>
+  <song-editor :show="show" @cancel="show=false"></song-editor>
 </div>

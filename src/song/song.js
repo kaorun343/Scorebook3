@@ -8,7 +8,7 @@ export default require('./song.html')({
       console.log('like')
     },
     edit() {
-      console.log('edit')
+      this.$emit('edit')
     }
   },
   components: { Icon }
