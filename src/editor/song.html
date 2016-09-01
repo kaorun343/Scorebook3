@@ -1,86 +1,88 @@
-<div class="modal" :class="{'is-active': show}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">曲の情報を編集</p>
-    </header>
-    <section class="modal-card-body">
+<modal :show="show" title="曲の情報を編集">
+  <div slot="body">
+    <columns>
+      <column class="is-two-thirds">
+        <label for="year" class="label">掲載号</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="" id="">
+              <optgroup v-for="album in albums" :label="album.year">
+                <option v-for="month in album.months" :value="month.value">
+                  {{month.title}}
+                </option>
+              </optgroup>
+            </select>
+          </span>
+        </p>
+      </column>
+      <column>
+        <label for="page" class="label">掲載ページ</label>
+        <p class="control">
+          <input class="input" type="number" name="page" id="page">
+        </p>
+      </column>
+    </columns>
 
-      <div class="columns">
-        <div class="column is-two-thirds">
-          <label for="year" class="label">掲載号</label>
-          <p class="control">
-            <span class="select is-fullwidth">
-              <select name="" id="">
-                <optgroup v-for="album in albums" :label="album.year">
-                  <option v-for="month in album.months" :value="month.value">{{month.title}}</option>
-                </optgroup>
-              </select>
-            </span>
-          </p>
-        </div>
-        <div class="column">
-          <label for="page" class="label">掲載ページ</label>
-          <p class="control">
-            <input class="input" type="number" name="page" id="page">
-          </p>
-        </div>
-      </div>
-      <label class="label" for="title">曲のタイトル</label>
-      <p class="control">
-        <input class="input" type="text" name="title" id="title">
-      </p>
+    <label class="label" for="title">曲のタイトル</label>
+    <p class="control">
+      <input class="input" type="text" name="title" id="title">
+    </p>
 
-      <label class="label" for="lead">曲の説明</label>
-      <p class="control">
-        <input class="input" type="text" name="lead" id="lead">
-      </p>
+    <label class="label" for="lead">曲の説明</label>
+    <p class="control">
+      <input class="input" type="text" name="lead" id="lead">
+    </p>
 
-      <div class="columns">
-        <div class="column">
-          <label for="" class="label">アーティスト</label>
-          <p class="control">
-            <input type="text" class="input">
-          </p>
-        </div>
+    <columns>
+      <column>
+        <label for="" class="label">アーティスト</label>
+        <p class="control">
+          <input type="text" class="input">
+        </p>
+      </column>
 
-        <div class="column">
-          <label for="" class="label">エレクトーン・スコア / 編曲</label>
-          <p class="control">
-            <input type="text" class="input">
-          </p>
-        </div>
-      </div>
+      <column>
+        <label for="" class="label">エレクトーン・スコア / 編曲</label>
+        <p class="control">
+          <input type="text" class="input">
+        </p>
+      </column>
+    </columns>
 
-      <div class="columns">
-        <div class="column">
-          <label for="" class="label">難易度</label>
-          <p class="control">
-            <input type="text" class="input">
-          </p>
-        </div>
-        <div class="column">
-          <label for="" class="label">エレクトーン</label>
-          <p class="control">
-            <input type="number" class="input">
-          </p>
-        </div>
-        <div class="column">
-          <label for="" class="label">ピアノ</label>
-          <p class="control">
-            <span class="select is-fullwidth">
-              <select name="" id="" :value="false">
-                <option :value="true">あり</option>
-                <option :value="false">なし</option>
-              </select>
-            </span>
-          </p>
-        </div>
-      </div>
-    </section>
-    <footer class="modal-card-foot">
-      <a class="button is-primary" @click="submit">保存</a>
-      <button class="button" @click="cancel">キャンセル</button>
-    </footer>
+    <columns>
+      <column>
+        <label for="" class="label">難易度</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="" id="" value="上級">
+              <option value="上級">上級</option>
+              <option value="中級">中級</option>
+              <option value="初級">初級</option>
+            </select>
+          </span>
+        </p>
+      </column>
+      <column>
+        <label for="" class="label">エレクトーン</label>
+        <p class="control">
+          <input type="number" class="input">
+        </p>
+      </column>
+      <column>
+        <label for="" class="label">ピアノ</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="" id="" :value="false">
+              <option :value="true">あり</option>
+              <option :value="false">なし</option>
+            </select>
+          </span>
+        </p>
+      </column>
+    </columns>
   </div>
-</div>
+  <div slot="footer">
+    <a class="button is-primary" @click="submit">保存</a>
+    <button class="button" @click="cancel">キャンセル</button>
+  </div>
+</modal>

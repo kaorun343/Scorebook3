@@ -1,6 +1,12 @@
 'use strict'
 
+import Column from '../grid/column'
+import Columns from '../grid/columns'
+import Modal from '../components/modal'
+
 export default require('./song.html')({
+  name: 'SongEditor',
+  components: { Column, Columns, Modal },
   props: ['show'],
   data() {
     const years = [2016, 2015, 2014, 2013, 2012, 2011, 2010]

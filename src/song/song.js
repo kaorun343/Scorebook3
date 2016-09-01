@@ -1,7 +1,8 @@
 'use strict'
-import Icon from '../icon/icon'
+import Icon from '../elements/icon'
 
 export default require('./song.html')({
+  name: 'Song',
   props: ['title', 'lead', 'artist', 'year', 'month', 'page', 'piano', 'grade', 'parts'],
   methods: {
     like() {
