@@ -1,0 +1,34 @@
+<modal :show="show" title="アルバムを編集">
+  <div slot="body">
+    <columns>
+      <column>
+        <label class="label" for="">発売年</label>
+        <p class="control">
+          <input class="input" type="number">
+        </p>
+      </column>
+      <column>
+        <label class="label" for="">発売月</label>
+        <p class="control">
+          <input class="input" type="number">
+        </p>
+      </column>
+      <column>
+        <label class="label" for="">自宅</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="" id="" :value="true">
+              <option :value="true">はい</option>
+              <option :value="false">いいえ</option>
+            </select>
+          </span>
+        </p>
+      </column>
+    </columns>
+  </div>
+
+  <div slot="footer">
+    <a class="button is-primary" @click="submit">保存</a>
+    <button class="button" @click="cancel">キャンセル</button>
+  </div>
+</modal>

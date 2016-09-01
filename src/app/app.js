@@ -3,18 +3,22 @@ require('./app.scss')
 import Hero from '../hero/hero'
 import Sidebar from '../sidebar/sidebar'
 import Song from '../song/song'
+import AlbumEditor from '../editor/album'
 import SongEditor from '../editor/song'
 
 export default require('./app.html')({
-  components: { Hero, Sidebar, Song, SongEditor },
+  components: { Hero, Sidebar, Song, AlbumEditor, SongEditor },
   data () {
     return {
-      show: true
+      modal: {
+        album: true,
+        song: false
+      }
     }
   },
   methods: {
     edit () {
-      this.show = !this.show
+      this.modal.album = !this.modal.album
     }
   }
 })

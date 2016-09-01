@@ -22,5 +22,6 @@
       </div>
     </div>
   </div>
-  <song-editor :show="show" @cancel="show=false"></song-editor>
+  <album-editor :show="modal.album" @cancel="modal.album=false"></album-editor>
+  <song-editor :show="modal.song" @cancel="modal.song=false"></song-editor>
 </div>
