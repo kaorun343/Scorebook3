@@ -1,23 +1,35 @@
-<modal :show="modal.album" title="アルバムを編集">
+<modal :show="modal.album.show" :title="modal.album.title">
   <div slot="body">
     <columns>
       <column>
-        <label class="label" for="">発売年</label>
-        <p class="control">
-          <input class="input" type="number">
-        </p>
-      </column>
-      <column>
-        <label class="label" for="">発売月</label>
-        <p class="control">
-          <input class="input" type="number">
-        </p>
-      </column>
-      <column>
-        <label class="label" for="">自宅</label>
+        <label class="label" for="album-year">発売年</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="" id="" :value="true">
+            <select name="album-year" :value="album.year" @change="change('year', $event)">
+              <option v-for="year in years" :value="year.value">
+                {{year.value}}年
+              </option>
+            </select>
+          </span>
+        </p>
+      </column>
+      <column>
+        <label class="label" for="album-month">発売月</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="album-month" :value="album.month" @change="change('month', $event)">
+              <option v-for="month in months" :value="month.value">
+                {{month.value}}月
+              </option>
+            </select>
+          </span>
+        </p>
+      </column>
+      <column>
+        <label class="label" for="album-home">自宅</label>
+        <p class="control">
+          <span class="select is-fullwidth">
+            <select name="album-home" :value="album.home" @change="change('home', $event)">
               <option :value="true">はい</option>
               <option :value="false">いいえ</option>
             </select>
@@ -28,7 +40,7 @@
   </div>
 
   <div slot="footer">
-    <a class="button is-primary" @click="submit">保存</a>
+    <a class="button is-primary" @click="submit" :disabled="!modal.album.valid">保存</a>
     <button class="button" @click="cancel">キャンセル</button>
   </div>
 </modal>

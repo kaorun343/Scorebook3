@@ -10,13 +10,13 @@ export default require('./year.html')({
     }
   },
   props: ['year', 'months'],
-  methods: Object.assign(mapActions(['openModal']), {
+  methods: Object.assign(mapActions(['newAlbum', 'openModal']), {
     yearMenu () {
       const menu = Menu.buildFromTemplate([
         {
           label: 'アルバムを追加する',
           click: () => {
-            this.openModal('album')
+            this.newAlbum(this.year)
           }
         }
       ])

@@ -3,14 +3,46 @@ import Column from '../grid/column'
 import Columns from '../grid/columns'
 import Modal from '../components/modal'
 
+function * range (from, to) {
+  if (from < to) {
+    while (from <= to) {
+      yield from++
+    }
+  } else {
+    while (from >= to) {
+      yield from--
+    }
+  }
+}
+
 export default require('./album.html')({
   name: 'AlbumEditor',
   components: { Column, Columns, Modal },
-  computed: mapGetters(['modal']),
+  computed: mapGetters(['album', 'modal']),
+  data () {
+    const year = new Date().getFullYear()
+    return {
+      years: [...range(year, 1971)].map(value => ({ value })),
+      months: [...range(12, 1)].map(value => ({ value }))
+    }
+  },
   methods: Object.assign({
-    submit () {},
+    change (target, e) {
+      let value = e.target.value
+      if (target === 'home') {
+        value = value === 'true'
+      } else {
+        value = Number(value)
+      }
+      this.changeAlbum({ target, value })
+    },
+    submit () {
+      if (this.modal.album.type === 'new') {
+        this.createAlbum()
+      }
+    },
     cancel () {
       this.closeModal('album')
     }
-  }, mapActions(['closeModal']))
+  }, mapActions(['closeModal', 'createAlbum', 'changeAlbum']))
 })

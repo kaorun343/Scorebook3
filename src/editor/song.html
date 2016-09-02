@@ -1,4 +1,4 @@
-<modal :show="modal.song" title="曲の情報を編集">
+<modal :show="modal.song.show" title="曲の情報を編集">
   <div slot="body">
     <columns>
       <column class="is-two-thirds">
@@ -7,7 +7,7 @@
           <span class="select is-fullwidth">
             <select name="" id="">
               <optgroup v-for="album in albums" :label="album.year+'年'">
-                <option v-for="month in album.months" :value="month.value">
+                <option v-for="month in album.months" :value="`${month.year}-${month.month}`">
                   {{month.title}}
                 </option>
               </optgroup>

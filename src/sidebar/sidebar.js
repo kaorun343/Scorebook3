@@ -14,13 +14,13 @@ export default require('./sidebar.html')({
       general: ['お気に入り', '検索'].map(title => ({ title }))
     }
   },
-  methods: Object.assign(mapActions(['openModal']), {
+  methods: Object.assign(mapActions(['newAlbum']), {
     contextmenu () {
       const menu = Menu.buildFromTemplate([
         {
           label: 'アルバムを追加する',
           click: () => {
-            this.openModal('album')
+            this.newAlbum()
           }
         }
       ])
