@@ -1,4 +1,4 @@
-<aside class="menu">
+<aside class="menu" @contextmenu.stop="contextmenu">
   <p class="menu-label">GENERAL</p>
   <ul class="menu-list">
     <li v-for="item in general"><a href="#">{{item.title}}</a></li>

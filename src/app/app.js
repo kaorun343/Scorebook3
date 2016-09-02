@@ -1,4 +1,3 @@
-'use strict'
 require('./app.scss')
 import Hero from '../hero/hero'
 import Sidebar from '../sidebar/sidebar'
@@ -11,14 +10,14 @@ export default require('./app.html')({
   data () {
     return {
       modal: {
-        album: true,
+        album: false,
         song: false
       }
     }
   },
   methods: {
     edit () {
-      this.modal.album = !this.modal.album
+      this.modal.song = !this.modal.song
     }
   }
 })

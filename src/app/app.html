@@ -8,20 +8,19 @@
         <hero></hero>
       </div>
       <div class="songs">
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
-        <song @edit="edit"></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
+        <song></song>
       </div>
     </div>
   </div>
-  <album-editor :show="modal.album" @cancel="modal.album=false"></album-editor>
-  <song-editor :show="modal.song" @cancel="modal.song=false"></song-editor>
+  <album-editor></album-editor>
+  <song-editor></song-editor>
 </div>

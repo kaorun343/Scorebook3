@@ -1,7 +1,7 @@
-<li>
+<li @contextmenu.stop="yearMenu">
   <a href="#" @click="show=!show">{{year}}年</a>
   <ul v-show="show">
-    <li v-for="month in months">
+    <li v-for="month in months" @contextmenu.stop="monthMenu">
       <a href="#">{{month.title}}</a>
     </li>
   </ul>

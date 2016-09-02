@@ -1,17 +1,30 @@
-'use strict'
+import { mapGetters, mapActions } from 'vuex'
 import Year from './year'
 
+import { remote } from 'electron'
+const { Menu } = remote
+
 export default require('./sidebar.html')({
+  components: { Year },
+  computed: mapGetters({
+    albums: 'albums'
+  }),
   data () {
-    const years = [2016, 2015, 2014, 2013, 2012, 2011, 2010]
-    const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
     return {
-      general: ['お気に入り', '検索'].map(title => ({ title })),
-      albums: years.map(year => ({
-        year,
-        months: months.map(month => ({ title: `${year}年${month}月号` }))
-      }))
+      general: ['お気に入り', '検索'].map(title => ({ title }))
     }
   },
-  components: { Year }
+  methods: Object.assign(mapActions(['openModal']), {
+    contextmenu () {
+      const menu = Menu.buildFromTemplate([
+        {
+          label: 'アルバムを追加する',
+          click: () => {
+            this.openModal('album')
+          }
+        }
+      ])
+      menu.popup(remote.getCurrentWindow())
+    }
+  })
 })

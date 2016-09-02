@@ -1,21 +1,5 @@
-<div class="box">
-  <nav class="level">
-    <div class="level-left">
-      <div class="level-item">
-        <h2 class="title">曲のタイトル</h2>
-      </div>
-    </div>
-    <div class="level-right">
-      <a class="level-item" href="#" @click.prevent="like">
-        <span title="お気に入り" class="icon is-small">
-          <icon icon="heart"></icon>
-        </span>
-      </a>
-      <a class="level-item" href="#" @click.prevent="edit">
-        <span title="編集" class="icon is-small"><icon icon="pencil"></icon></span>
-      </a>
-    </div>
-  </nav>
+<div class="box" @contextmenu="contextmenu">
+  <h2 class="title">曲のタイトル</h2>
   <h3 class="subtitle">曲の説明文</h3>
 
   <table class="table is-bordered">
