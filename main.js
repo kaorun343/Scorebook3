@@ -4,7 +4,7 @@ const { app, BrowserWindow } = electron
 let win
 
 function createWindow () {
-  win = new BrowserWindow({ width: 800, height: 600 })
+  win = new BrowserWindow({ width: 960, height: 640 })
 
   win.loadURL(`file://${__dirname}/dist/index.html`)
 
