@@ -96,13 +96,13 @@ const mutations = {
   },
   [UPDATE_ALBUM] ({ editors: { album }, albums }) {
     const { year, month, home } = album.data
-    const months = albums.find(albums => albums.year === year)
-    months.months.find(album => album.month === month).home = home
+    albums[year].months[month].home = home
   },
   [DESTROY_ALBUM] ({ albums }, { year, month }) {
-    const months = albums.find(albums => albums.year === year)
-    const index = months.months.findIndex(album => album.month === month)
-    months.months.splice(index, 1)
+    Vue.delete(albums[year].months, month)
+    if (Object.keys(albums[year]) === 0) {
+      Vue.delete(albums, year)
+    }
   },
   [CHANGE_ALBUM] ({ editors: { album }}, { target, value }) {
     album.data[target] = value
