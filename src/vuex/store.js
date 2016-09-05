@@ -108,7 +108,7 @@ const mutations = {
     album.data[target] = value
   },
   [CHECK_ALBUM] ({ editors: { album }, albums }) {
-    const { year, month } = album
+    const { year, month } = album.data
     if (typeof albums[year] !== 'object') {
       album.valid = true
     } else if (typeof albums[year].months[month] !== 'object') {
