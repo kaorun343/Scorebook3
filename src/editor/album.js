@@ -21,6 +21,9 @@ export default require('./album.html')({
   computed: Object.assign({}, {
     album () {
       return this.albumEditor.data
+    },
+    isEditing () {
+      return this.albumEditor.state === 'edit'
     }
   }, mapGetters(['albumEditor'])),
   data () {
@@ -43,10 +46,12 @@ export default require('./album.html')({
     submit () {
       if (this.albumEditor.state === 'new') {
         this.createAlbum()
+      } else {
+        this.updateAlbum()
       }
     },
     cancel () {
       this.closeEditor('album')
     }
-  }, mapActions(['closeEditor', 'createAlbum', 'changeAlbum']))
+  }, mapActions(['closeEditor', 'createAlbum', 'changeAlbum', 'updateAlbum']))
 })

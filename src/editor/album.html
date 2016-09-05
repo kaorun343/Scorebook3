@@ -5,7 +5,7 @@
         <label class="label" for="album-year">発売年</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="album-year" :value="album.year" @change="change('year', $event)">
+            <select name="album-year" :value="album.year" @change="change('year', $event)" :disabled="isEditing">
               <option v-for="year in years" :value="year.value">
                 {{year.value}}年
               </option>
@@ -17,7 +17,7 @@
         <label class="label" for="album-month">発売月</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="album-month" :value="album.month" @change="change('month', $event)">
+            <select name="album-month" :value="album.month" @change="change('month', $event)" :disabled="isEditing">
               <option v-for="month in months" :value="month.value">
                 {{month.value}}月
               </option>

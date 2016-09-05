@@ -10,7 +10,7 @@ export default require('./year.html')({
     }
   },
   props: ['year', 'months'],
-  methods: Object.assign(mapActions(['newAlbum', 'openModal']), {
+  methods: Object.assign({}, {
     yearMenu () {
       const menu = Menu.buildFromTemplate([
         {
@@ -22,23 +22,31 @@ export default require('./year.html')({
       ])
       menu.popup(remote.getCurrentWindow())
     },
-    monthMenu () {
+    monthMenu (album) {
       const menu = Menu.buildFromTemplate([
         {
-          label: 'アルバムを編集する',
+          label: '曲を追加する',
           click: () => {
-            this.openModal('album')
+            this.openEditor('song')
           }
         },
         { type: 'separator' },
         {
-          label: '曲を追加する',
+          label: 'アルバムを編集する',
           click: () => {
-            this.openModal('song')
+            this.editAlbum(album)
+          }
+        },
+        {
+          label: 'アルバムを削除する',
+          click: () => {
+            if (window.confirm(`アルバムを削除しますか？`)) {
+              this.destroyAlbum(album)
+            }
           }
         }
       ])
       menu.popup(remote.getCurrentWindow())
     }
-  })
+  }, mapActions(['newAlbum', 'editAlbum', 'destroyAlbum', 'openEditor']))
 })

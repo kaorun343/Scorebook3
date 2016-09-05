@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import {
   OPEN_EDITOR, CLOSE_EDITOR,
-  NEW_ALBUM, CREATE_ALBUM, CHANGE_ALBUM, CHECK_ALBUM
+  NEW_ALBUM, CREATE_ALBUM,
+  EDIT_ALBUM, UPDATE_ALBUM,
+  DESTROY_ALBUM,
+  CHANGE_ALBUM, CHECK_ALBUM
 } from './mutation-types'
 import * as actions from './actions'
 import * as getters from './getters'
@@ -82,6 +85,22 @@ const mutations = {
       albums.push(new Year(year, [new Month(year, month, home)]))
       albums = albums.sort((a, b) => a.year < b.year)
     }
+  },
+  [EDIT_ALBUM] ({ editors: { album }}, { year, month, home }) {
+    album.title = 'アルバムを編集'
+    album.state = 'edit'
+    album.data = new Album(year, month, home)
+    album.valid = true
+  },
+  [UPDATE_ALBUM] ({ editors: { album }, albums }) {
+    const { year, month, home } = album.data
+    const months = albums.find(albums => albums.year === year)
+    months.months.find(album => album.month === month).home = home
+  },
+  [DESTROY_ALBUM] ({ albums }, { year, month }) {
+    const months = albums.find(albums => albums.year === year)
+    const index = months.months.findIndex(album => album.month === month)
+    months.months.splice(index, 1)
   },
   [CHANGE_ALBUM] ({ editors: { album }}, { target, value }) {
     album.data[target] = value
