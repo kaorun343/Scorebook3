@@ -6,15 +6,13 @@
     <thead>
       <tr>
         <th>アーティスト</th>
-        <th>掲載号</th>
-        <th>掲載ページ</th>
+        <th>エレクトーン・スコア / 編曲</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>モーツァルト</td>
-        <td>2016年1月号</td>
-        <td>30ページ</td>
+        <td>編曲者</td>
       </tr>
     </tbody>
   </table>
@@ -22,6 +20,8 @@
   <table class="table is-bordered">
     <thead>
       <tr>
+        <th>掲載号</th>
+        <th>掲載ページ</th>
         <th>難易度</th>
         <th>エレクトーン</th>
         <th>ピアノ</th>
@@ -29,6 +29,8 @@
     </thead>
     <tbody>
       <tr>
+        <td>{{ song.year }}年{{ song.month }}月号</td>
+        <td>{{ song.page }}ページ</td>
         <td>上級</td>
         <td>3台</td>
         <td><icon icon="times"></icon></td>

@@ -1,3 +1,11 @@
+export function album (state) {
+  return state.album
+}
+
+export function songs (state) {
+  return state.songs
+}
+
 export function albumEditor (state) {
   return state.editors.album
 }

@@ -1,0 +1,8 @@
+<div class="songs-container">
+  <div class="songs-hero">
+    <hero :title="album.title" :subtitle="album.subtitle"></hero>
+  </div>
+  <div class="songs">
+    <song v-for="song in songs" :song="song"></song>
+  </div>
+</div>

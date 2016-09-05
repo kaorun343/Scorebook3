@@ -47,6 +47,12 @@ export default require('./year.html')({
         }
       ])
       menu.popup(remote.getCurrentWindow())
+    },
+    to (year, month) {
+      return `/${year}/${month}`
+    },
+    isActive () {
+      return this.$route.params.year === this.year
     }
   }, mapActions(['newAlbum', 'editAlbum', 'destroyAlbum', 'openEditor']))
 })

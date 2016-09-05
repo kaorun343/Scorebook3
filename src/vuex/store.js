@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import {
   ADD_ALBUMS,
   OPEN_EDITOR, CLOSE_EDITOR,
+  SHOW_ALBUM,
   NEW_ALBUM, CREATE_ALBUM,
   EDIT_ALBUM, UPDATE_ALBUM,
   DESTROY_ALBUM,
@@ -55,6 +56,13 @@ export class State {
       album: new Editor(new Album()),
       song: new Editor({})
     }
+
+    this.album = {
+      title: '',
+      subtitle: ''
+    }
+
+    this.songs = []
   }
 }
 
@@ -79,6 +87,13 @@ const mutations = {
     album.title = '新規アルバム作成'
     album.state = 'new'
     album.data = new Album(year)
+  },
+  [SHOW_ALBUM] (state, songs) {
+    const { year, month } = state.route.params
+    state.album.title = `${year}年${month}月号`
+    const { home } = state.albums[year].months[month]
+    state.album.subtitle = `自宅：${home ? 'はい' : 'いいえ'}`
+    state.songs = songs
   },
   [CREATE_ALBUM] ({ editors: { album }, albums }) {
     const { year, month, home } = album.data

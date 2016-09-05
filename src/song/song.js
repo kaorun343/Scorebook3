@@ -7,7 +7,7 @@ const { Menu, MenuItem } = remote
 export default require('./song.html')({
   components: { Icon },
   name: 'Song',
-  props: ['title', 'lead', 'artist', 'year', 'month', 'page', 'piano', 'grade', 'parts'],
+  props: ['song'],
   methods: Object.assign(mapActions(['openModal']), {
     contextmenu () {
       const menu = new Menu()
