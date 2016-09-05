@@ -18,7 +18,11 @@ function * range (from, to) {
 export default require('./album.html')({
   name: 'AlbumEditor',
   components: { Column, Columns, Modal },
-  computed: mapGetters(['album', 'modal']),
+  computed: Object.assign({}, {
+    album () {
+      return this.albumEditor.data
+    }
+  }, mapGetters(['albumEditor'])),
   data () {
     const year = new Date().getFullYear()
     return {
@@ -37,12 +41,12 @@ export default require('./album.html')({
       this.changeAlbum({ target, value })
     },
     submit () {
-      if (this.modal.album.type === 'new') {
+      if (this.albumEditor.state === 'new') {
         this.createAlbum()
       }
     },
     cancel () {
-      this.closeModal('album')
+      this.closeEditor('album')
     }
-  }, mapActions(['closeModal', 'createAlbum', 'changeAlbum']))
+  }, mapActions(['closeEditor', 'createAlbum', 'changeAlbum']))
 })

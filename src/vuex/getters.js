@@ -1,7 +1,11 @@
-/*eslint semi: ["error", "always"]*/
+export function albumEditor (state) {
+  return state.editors.album
+}
 
-export const album = state => state.album;
+export function songEditor (state) {
+  return state.editors.song
+}
 
-export const albums = state => state.albums;
-
-export const modal = state => state.modal;
+export function albums (state) {
+  return state.albums
+}

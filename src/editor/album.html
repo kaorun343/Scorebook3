@@ -1,4 +1,4 @@
-<modal :show="modal.album.show" :title="modal.album.title">
+<modal :show="albumEditor.show" :title="albumEditor.title">
   <div slot="body">
     <columns>
       <column>
@@ -40,7 +40,7 @@
   </div>
 
   <div slot="footer">
-    <a class="button is-primary" @click="submit" :disabled="!modal.album.valid">保存</a>
+    <a class="button is-primary" @click="submit" :disabled="!albumEditor.valid">保存</a>
     <button class="button" @click="cancel">キャンセル</button>
   </div>
 </modal>

@@ -6,7 +6,11 @@ import Modal from '../components/modal'
 export default require('./song.html')({
   name: 'SongEditor',
   components: { Column, Columns, Modal },
-  computed: mapGetters(['modal', 'albums']),
+  computed: Object.assign({}, {
+    song () {
+      return this.songEditor.data
+    }
+  }, mapGetters(['songEditor', 'albums'])),
   data () {
     return {
       title: 'タイトル'
@@ -17,7 +21,7 @@ export default require('./song.html')({
       this.$emit('submit')
     },
     cancel () {
-      this.closeModal('song')
+      this.closeEditor('song')
     }
-  }, mapActions(['closeModal']))
+  }, mapActions(['closeEditor']))
 })
