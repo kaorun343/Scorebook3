@@ -1,4 +1,5 @@
 import {
+  ADD_ALBUMS,
   OPEN_EDITOR, CLOSE_EDITOR,
   NEW_ALBUM, CREATE_ALBUM,
   EDIT_ALBUM, UPDATE_ALBUM,
@@ -7,6 +8,18 @@ import {
 } from './mutation-types'
 
 const ALBUM = 'album'
+
+export function initialize ({ commit }) {
+  new Promise(resolve => {
+    setTimeout(() => {
+      const year = 2015
+      const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+      resolve(months.map(month => ({ year, month, home: true })))
+    }, 1000)
+  }).then((albums) => {
+    commit(ADD_ALBUMS, albums)
+  })
+}
 
 export function openEditor ({ commit }, target) {
   commit(OPEN_EDITOR, target)

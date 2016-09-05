@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {
+  ADD_ALBUMS,
   OPEN_EDITOR, CLOSE_EDITOR,
   NEW_ALBUM, CREATE_ALBUM,
   EDIT_ALBUM, UPDATE_ALBUM,
@@ -33,7 +34,7 @@ export class Editor {
 }
 
 export class Year {
-  constructor (year, months = []) {
+  constructor (year, months = {}) {
     this.year = year
     this.months = months
   }
@@ -48,11 +49,7 @@ export class Month extends Album {
 
 export class State {
   constructor () {
-    const years = [2015]
-    const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-    this.albums = years.map(year => {
-      return new Year(year, months.map((month) => new Month(year, month, true)))
-    })
+    this.albums = {}
 
     this.editors = {
       album: new Editor(new Album()),
@@ -62,6 +59,15 @@ export class State {
 }
 
 const mutations = {
+  [ADD_ALBUMS] (state, albums) {
+    albums.forEach(({ year, month, home }) => {
+      const album = new Month(year, month, home)
+      if (typeof state.albums[year] === 'undefined') {
+        Vue.set(state.albums, year, new Year(year))
+      }
+      Vue.set(state.albums[year].months, month, album)
+    })
+  },
   [OPEN_EDITOR] (state, target) {
     state.editors[target].show = true
   },
@@ -76,15 +82,11 @@ const mutations = {
   },
   [CREATE_ALBUM] ({ editors: { album }, albums }) {
     const { year, month, home } = album.data
-    const index = albums.findIndex(albums => albums.year === year)
-    if (index > -1) {
-      const months = albums[index]
-      months.months.push(new Month(year, month))
-      months.months = albums[index].months.sort((a, b) => a.value < b.value)
-    } else {
-      albums.push(new Year(year, [new Month(year, month, home)]))
-      albums = albums.sort((a, b) => a.year < b.year)
+    if (typeof albums[year] === 'undefined') {
+      Vue.set(albums, year, new Year(year))
     }
+    const months = albums[year]
+    Vue.set(months.months, month, new Month(year, month, home))
   },
   [EDIT_ALBUM] ({ editors: { album }}, { year, month, home }) {
     album.title = 'アルバムを編集'
@@ -107,15 +109,13 @@ const mutations = {
   },
   [CHECK_ALBUM] ({ editors: { album }, albums }) {
     const { year, month } = album
-    const index = albums.findIndex(albums => albums.year === year)
-    if (index > -1) {
-      const months = albums[index].months
-      if (months.findIndex(m => m.month === month) > -1) {
-        album.valid = false
-        return
-      }
+    if (typeof albums[year] !== 'object') {
+      album.valid = true
+    } else if (typeof albums[year].months[month] !== 'object') {
+      album.valid = true
+    } else {
+      album.valid = false
     }
-    album.valid = true
   }
 }
 

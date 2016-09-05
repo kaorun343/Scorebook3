@@ -1,4 +1,5 @@
 require('./app.scss')
+import { mapActions } from 'vuex'
 import Hero from '../hero/hero'
 import Sidebar from '../sidebar/sidebar'
 import Song from '../song/song'
@@ -15,9 +16,12 @@ export default require('./app.html')({
       }
     }
   },
-  methods: {
+  created () {
+    this.initialize()
+  },
+  methods: Object.assign({}, {
     edit () {
       this.modal.song = !this.modal.song
     }
-  }
+  }, mapActions(['initialize']))
 })

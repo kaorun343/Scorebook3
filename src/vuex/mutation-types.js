@@ -1,4 +1,6 @@
 /*eslint semi: ["error", "always"]*/
+export const ADD_ALBUMS = 'ADD_ALBUMS';
+
 export const OPEN_EDITOR = 'OPEN_EDITOR';
 export const CLOSE_EDITOR = 'CLOSE_EDITOR';
 
