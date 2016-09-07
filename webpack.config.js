@@ -1,10 +1,11 @@
 'use strict'
 
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: './dist/assets',
-    publicPath: './assets/',
+    path: './dist',
     filename: 'bundle.js'
   },
   module: {
@@ -35,5 +36,10 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      template: './src/template.ejs'
+    })
+  ],
   target: 'electron-renderer'
 }

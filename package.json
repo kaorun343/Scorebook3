@@ -27,6 +27,7 @@
     "eslint-config-vue": "^1.1.0",
     "eslint-plugin-html": "^1.5.2",
     "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.22.0",
     "node-sass": "^3.8.0",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
