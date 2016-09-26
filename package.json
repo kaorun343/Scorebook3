@@ -16,9 +16,9 @@
     "animate.css": "^3.5.1",
     "bulma": "^0.1.2",
     "font-awesome": "^4.6.3",
-    "vue": "^2.0.0-rc.5",
-    "vue-router": "^2.0.0-rc.4",
-    "vuex": "^2.0.0-rc.5",
+    "vue": "^2.0.0-rc.7",
+    "vue-router": "^2.0.0-rc.5",
+    "vuex": "^2.0.0-rc.6",
     "vuex-router-sync": "^3.0.0"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "vue-template-compiler": "^2.0.0-rc.5",
+    "vue-template-compiler": "^2.0.0-rc.7",
     "vue-template-loader": "^0.1.2",
     "webpack": "^2.1.0-beta.22"
   }
