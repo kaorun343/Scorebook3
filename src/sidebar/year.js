@@ -10,7 +10,7 @@ export default require('./year.html')({
     }
   },
   props: ['year', 'months'],
-  methods: Object.assign({}, {
+  methods: Object.assign({
     yearMenu () {
       const menu = Menu.buildFromTemplate([
         {
@@ -27,7 +27,7 @@ export default require('./year.html')({
         {
           label: '曲を追加する',
           click: () => {
-            this.openEditor('song')
+            this.newSong(album)
           }
         },
         { type: 'separator' },
@@ -54,5 +54,8 @@ export default require('./year.html')({
     isActive () {
       return this.$route.params.year === this.year
     }
-  }, mapActions(['newAlbum', 'editAlbum', 'destroyAlbum', 'openEditor']))
+  }, mapActions([
+    'newAlbum', 'editAlbum', 'destroyAlbum', 'openEditor',
+    'newSong'
+  ]))
 })

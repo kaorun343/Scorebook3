@@ -7,7 +7,10 @@ import {
   NEW_ALBUM, CREATE_ALBUM,
   EDIT_ALBUM, UPDATE_ALBUM,
   DESTROY_ALBUM,
-  CHANGE_ALBUM, CHECK_ALBUM
+  CHANGE_ALBUM, CHECK_ALBUM,
+  NEW_SONG, CREATE_SONG,
+  EDIT_SONG, UPDATE_SONG,
+  CHANGE_SONG, CHECK_SONG
 } from './mutation-types'
 import * as actions from './actions'
 import * as getters from './getters'
@@ -21,6 +24,21 @@ export class Album {
     this.year = year
     this.month = month
     this.home = home
+  }
+}
+
+export class Song {
+  constructor (year = date.getFullYear(), month = date.getMonth()) {
+    this.year = year
+    this.month = month
+    this.page = 1
+    this.title = ''
+    this.description = ''
+    this.artist = ''
+    this.arranger = ''
+    this.grade = ''
+    this.electone = 1
+    this.piano = false
   }
 }
 
@@ -54,7 +72,7 @@ export class State {
 
     this.editors = {
       album: new Editor(new Album()),
-      song: new Editor({})
+      song: new Editor(new Song())
     }
 
     this.album = {
@@ -131,7 +149,18 @@ const mutations = {
     } else {
       album.valid = false
     }
-  }
+  },
+  [NEW_SONG] ({ editors: { song: songEditor }}, song) {
+    songEditor.data = song
+  },
+  [CREATE_SONG] () {},
+  [EDIT_SONG] () {},
+  [UPDATE_SONG] () {},
+  [CHANGE_SONG] ({ editors: { song }}, { target, value }) {
+    song.data[target] = value
+    console.log({ target, value })
+  },
+  [CHECK_SONG] () {}
 }
 
 const store = new Vuex.Store({

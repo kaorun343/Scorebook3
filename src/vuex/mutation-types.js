@@ -13,3 +13,12 @@ export const DESTROY_ALBUM = 'DESTROY_ALBUM'
 
 export const CHANGE_ALBUM = 'CHANGE_ALBUM'
 export const CHECK_ALBUM = 'CHECK_ALBUM'
+
+export const NEW_SONG = 'NEW_SONG'
+export const CREATE_SONG = 'CREATE_SONG'
+export const EDIT_SONG = 'EDIT_SONG'
+export const UPDATE_SONG = 'UPDATE_SONG'
+export const DESTROY_SONG = 'DESTROY_SONG'
+
+export const CHANGE_SONG = 'CHANGE_SONG'
+export const CHECK_SONG = 'CHECK_SONG'

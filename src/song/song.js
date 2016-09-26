@@ -8,13 +8,13 @@ export default require('./song.html')({
   components: { Icon },
   name: 'Song',
   props: ['song'],
-  methods: Object.assign(mapActions(['openModal']), {
+  methods: Object.assign(mapActions(['editSong']), {
     contextmenu () {
       const menu = new Menu()
       menu.append(new MenuItem({
         label: '編集する',
         click: () => {
-          this.openModal('song')
+          this.editSong(this.song)
         }
       }))
       menu.popup(remote.getCurrentWindow())

@@ -2,11 +2,11 @@
   <div slot="body">
     <columns>
       <column class="is-two-thirds">
-        <label for="year" class="label">掲載号</label>
+        <label for="album" class="label">掲載号</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="" id="">
-              <optgroup v-for="album in albums" :label="album.year+'年'">
+            <select name="album" id="" :value="album" @change="change('album', $event)">
+              <optgroup v-for="album in albums" :label="`${album.year}年`">
                 <option v-for="month in album.months" :value="`${month.year}-${month.month}`">
                   {{month.title}}
                 </option>
@@ -18,33 +18,33 @@
       <column>
         <label for="page" class="label">掲載ページ</label>
         <p class="control">
-          <input class="input" type="number" name="page" id="page">
+          <input class="input" type="number" name="page" id="page" :value="song.page" @change="change('page', $event)">
         </p>
       </column>
     </columns>
 
     <label class="label" for="title">曲のタイトル</label>
     <p class="control">
-      <input class="input" type="text" name="title" id="title">
+      <input class="input" type="text" name="title" id="title" :value="song.title" @change="change('title', $event)">
     </p>
 
-    <label class="label" for="lead">曲の説明</label>
+    <label class="label" for="description">曲の説明</label>
     <p class="control">
-      <input class="input" type="text" name="lead" id="lead">
+      <input class="input" type="text" name="description" id="description" :value="song.description" @change="change('description', $event)">
     </p>
 
     <columns>
       <column>
         <label for="" class="label">アーティスト</label>
         <p class="control">
-          <input type="text" class="input">
+          <input type="text" class="input" :value="song.artist" @change="change('artist', $event)">
         </p>
       </column>
 
       <column>
         <label for="" class="label">エレクトーン・スコア / 編曲</label>
         <p class="control">
-          <input type="text" class="input">
+          <input type="text" class="input" :value="song.arranger" @change="change('arranger', $event)">
         </p>
       </column>
     </columns>
@@ -65,14 +65,14 @@
       <column>
         <label for="" class="label">エレクトーン</label>
         <p class="control">
-          <input type="number" class="input">
+          <input type="number" class="input" :value="song.electone" @change="change('electone', $event)">
         </p>
       </column>
       <column>
         <label for="" class="label">ピアノ</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="" id="" :value="false">
+            <select name="" id="" :value="song.piano" @change="change('piano', $event)">
               <option :value="true">あり</option>
               <option :value="false">なし</option>
             </select>
