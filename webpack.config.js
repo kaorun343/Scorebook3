@@ -8,8 +8,12 @@ module.exports = {
     path: './dist',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['', '.ts', '.js']
+  },
   module: {
     loaders: [
+      { test: /\.ts$/, loader: 'ts' },
       { test: /\.html$/, loader: 'vue-template' },
       { test: /\.css$/, loaders: ['style', 'css'] },
       { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
