@@ -1,5 +1,5 @@
 import { mapActions, mapGetters } from 'vuex'
-import Hero from '../elements/hero'
+import Hero from '../bulma/hero'
 import Song from '../song/song'
 
 export default require('./album.html')({

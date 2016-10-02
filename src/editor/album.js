@@ -1,7 +1,7 @@
 import { mapActions, mapGetters } from 'vuex'
-import Column from '../grid/column'
-import Columns from '../grid/columns'
-import Modal from '../components/modal'
+import Column from '../bulma/column'
+import Columns from '../bulma/columns'
+import Modal from '../bulma/modal'
 
 function * range (from, to) {
   if (from < to) {
