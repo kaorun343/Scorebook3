@@ -2,6 +2,7 @@ import { FunctionalComponentOptions } from 'vue';
 
 export default {
     name: 'Hero',
+    props: ['icon'],
     functional: true,
     render(h, { props: { icon } }) {
         return h('i', {
