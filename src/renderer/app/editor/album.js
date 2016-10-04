@@ -36,7 +36,7 @@ export default require('./album.html')({
   methods: Object.assign({
     change (target, e) {
       let value = e.target.value
-      if (target === 'home') {
+      if (target === 'onLoan') {
         value = value === 'true'
       } else {
         value = Number(value)

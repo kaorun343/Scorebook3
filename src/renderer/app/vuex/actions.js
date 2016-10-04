@@ -21,7 +21,7 @@ export function initialize ({ commit }) {
     setTimeout(() => {
       const year = 2015
       const months = [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-      resolve(months.map(month => ({ year, month, home: true })))
+      resolve(months.map(month => ({ year, month, onLoan: false })))
     }, 100)
   }).then((albums) => {
     commit(ADD_ALBUMS, albums)

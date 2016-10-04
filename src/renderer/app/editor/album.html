@@ -26,10 +26,10 @@
         </p>
       </column>
       <column>
-        <label class="label" for="album-home">自宅</label>
+        <label class="label" for="album-on-loan">貸出中</label>
         <p class="control">
           <span class="select is-fullwidth">
-            <select name="album-home" :value="album.home" @change="change('home', $event)">
+            <select name="album-on-loan" :value="album.onLoan" @change="change('onLoan', $event)">
               <option :value="true">はい</option>
               <option :value="false">いいえ</option>
             </select>

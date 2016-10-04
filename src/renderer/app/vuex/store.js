@@ -20,10 +20,10 @@ Vue.use(Vuex)
 const date = new Date()
 
 export class Album {
-  constructor (year = date.getFullYear(), month = 12, home = true) {
+  constructor (year = date.getFullYear(), month = 12, onLoan = false) {
     this.year = year
     this.month = month
-    this.home = home
+    this.onLoan = onLoan
   }
 }
 
@@ -60,8 +60,8 @@ export class Year {
 }
 
 export class Month extends Album {
-  constructor (year, month, home) {
-    super(year, month, home)
+  constructor (year, month, onLoan) {
+    super(year, month, onLoan)
     this.title = `${year}年${month}月号`
   }
 }
@@ -86,8 +86,8 @@ export class State {
 
 const mutations = {
   [ADD_ALBUMS] (state, albums) {
-    albums.forEach(({ year, month, home }) => {
-      const album = new Month(year, month, home)
+    albums.forEach(({ year, month, onLoan }) => {
+      const album = new Month(year, month, onLoan)
       if (typeof state.albums[year] === 'undefined') {
         Vue.set(state.albums, year, new Year(year))
       }
@@ -109,27 +109,27 @@ const mutations = {
   [SHOW_ALBUM] (state, songs) {
     const { year, month } = state.route.params
     state.album.title = `${year}年${month}月号`
-    const { home } = state.albums[year].months[month]
-    state.album.subtitle = `自宅：${home ? 'はい' : 'いいえ'}`
+    const { onLoan } = state.albums[year].months[month]
+    state.album.subtitle = `貸出中：${onLoan ? 'はい' : 'いいえ'}`
     state.songs = songs
   },
   [CREATE_ALBUM] ({ editors: { album }, albums }) {
-    const { year, month, home } = album.data
+    const { year, month, onLoan } = album.data
     if (typeof albums[year] === 'undefined') {
       Vue.set(albums, year, new Year(year))
     }
     const months = albums[year]
-    Vue.set(months.months, month, new Month(year, month, home))
+    Vue.set(months.months, month, new Month(year, month, onLoan))
   },
-  [EDIT_ALBUM] ({ editors: { album }}, { year, month, home }) {
+  [EDIT_ALBUM] ({ editors: { album }}, { year, month, onLoan }) {
     album.title = 'アルバムを編集'
     album.state = 'edit'
-    album.data = new Album(year, month, home)
+    album.data = new Album(year, month, onLoan)
     album.valid = true
   },
   [UPDATE_ALBUM] ({ editors: { album }, albums }) {
-    const { year, month, home } = album.data
-    albums[year].months[month].home = home
+    const { year, month, onLoan } = album.data
+    albums[year].months[month].onLoan = onLoan
   },
   [DESTROY_ALBUM] ({ albums }, { year, month }) {
     Vue.delete(albums[year].months, month)
