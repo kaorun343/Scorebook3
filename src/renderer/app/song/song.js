@@ -1,5 +1,5 @@
 import { mapActions } from 'vuex'
-import Icon from '../bulma/icon'
+import Icon from '../../shared/bulma/icon'
 
 import { remote } from 'electron'
 const { Menu, MenuItem } = remote

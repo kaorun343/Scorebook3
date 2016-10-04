@@ -1,7 +1,7 @@
 import { mapActions, mapGetters } from 'vuex'
-import Column from '../bulma/column'
-import Columns from '../bulma/columns'
-import Modal from '../bulma/modal'
+import Column from '../../shared/bulma/column'
+import Columns from '../../shared/bulma/columns'
+import Modal from '../../shared/bulma/modal'
 
 const numbers = ['page', 'electone']
 

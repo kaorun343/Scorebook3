@@ -3,7 +3,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/renderer/app/app.js',
   output: {
     path: './dist',
     filename: 'bundle.js'
@@ -42,7 +42,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './src/template.ejs'
+      template: './src/renderer/app/template.ejs'
     })
   ],
   target: 'electron-renderer'

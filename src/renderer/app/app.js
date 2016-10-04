@@ -1,6 +1,5 @@
 require('bulma/css/bulma.css')
-require('./style.scss')
-// require('animate.css')
+require('./app.scss')
 
 import Vue from 'vue'
 
@@ -16,7 +15,7 @@ import Sidebar from './sidebar/sidebar'
 import AlbumEditor from './editor/album'
 import SongEditor from './editor/song'
 
-const app = new Vue(require('./template.html')({
+const app = new Vue(require('./app.html')({
   store,
   router,
   components: { Sidebar, AlbumEditor, SongEditor },
