@@ -1,5 +1,5 @@
 <li @contextmenu.stop="yearMenu">
-  <a href="#" @click.prevent="show=!show" :class="{'is-active': isActive}">{{year}}年</a>
+  <a href="#" @click.prevent="show=!show">{{year}}年</a>
   <ul v-show="show">
     <li v-for="month in months" @contextmenu.stop="monthMenu(month)">
       <router-link activeClass="is-active" :exact="true" :to="to(year, month.month)">{{month.title}}</router-link>

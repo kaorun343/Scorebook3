@@ -16,7 +16,7 @@ export default require('./year.html')({
         {
           label: 'アルバムを追加する',
           click: () => {
-            this.newAlbum(this.year)
+            this.createAlbum(this.year)
           }
         }
       ])
@@ -40,9 +40,7 @@ export default require('./year.html')({
         {
           label: 'アルバムを削除する',
           click: () => {
-            if (window.confirm(`アルバムを削除しますか？`)) {
-              this.destroyAlbum(album)
-            }
+            this.destroyAlbum(album)
           }
         }
       ])
@@ -50,12 +48,8 @@ export default require('./year.html')({
     },
     to (year, month) {
       return `/${year}/${month}`
-    },
-    isActive () {
-      return this.$route.params.year === this.year
     }
   }, mapActions([
-    'newAlbum', 'editAlbum', 'destroyAlbum', 'openEditor',
-    'newSong'
+    'createAlbum', 'editAlbum', 'destroyAlbum'
   ]))
 })

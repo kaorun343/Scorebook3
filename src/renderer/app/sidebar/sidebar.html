@@ -5,6 +5,6 @@
   </ul>
   <p class="menu-label">ALBUMS</p>
   <ul class="menu-list">
-    <year :key="album.year" v-for="album in albums" :year="album.year" :months="album.months"></year>
+    <year :key="year" v-for="(months, year) in albums" :year="year" :months="months"></year>
   </ul>
 </aside>

@@ -13,16 +13,16 @@ sync(store, router)
 
 import Sidebar from './sidebar/sidebar'
 import AlbumEditor from './editor/album'
-import SongEditor from './editor/song'
+// import SongEditor from './editor/song'
 
 const app = new Vue(require('./app.html')({
   store,
   router,
-  components: { Sidebar, AlbumEditor, SongEditor },
+  components: { Sidebar, AlbumEditor },
   created () {
-    this.initialize()
+    // this.initialize()
   },
-  methods: mapActions(['initialize'])
+  methods: mapActions([])
 }))
 
 app.$mount('#app')

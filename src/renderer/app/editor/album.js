@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import Column from '../../shared/bulma/column'
 import Columns from '../../shared/bulma/columns'
 import Modal from '../../shared/bulma/modal'
@@ -18,14 +18,16 @@ function * range (from, to) {
 export default require('./album.html')({
   name: 'AlbumEditor',
   components: { Column, Columns, Modal },
-  computed: Object.assign({}, {
+  computed: Object.assign({
     album () {
-      return this.albumEditor.data
+      return this.editor.data
     },
     isEditing () {
-      return this.albumEditor.state === 'edit'
+      return this.editor.state === 'edit'
     }
-  }, mapGetters(['albumEditor'])),
+  }, mapState({
+    editor: (state) => state.albums.editor
+  })),
   data () {
     const year = new Date().getFullYear()
     return {
@@ -44,14 +46,14 @@ export default require('./album.html')({
       this.changeAlbum({ target, value })
     },
     submit () {
-      if (this.albumEditor.state === 'new') {
-        this.createAlbum()
+      if (this.editor.state === 0) {
+        this.storeAlbum()
       } else {
         this.updateAlbum()
       }
     },
     cancel () {
-      this.closeEditor('album')
+      this.cancelAlbum()
     }
-  }, mapActions(['closeEditor', 'createAlbum', 'changeAlbum', 'updateAlbum']))
+  }, mapActions(['storeAlbum', 'updateAlbum', 'cancelAlbum', 'changeAlbum']))
 })
