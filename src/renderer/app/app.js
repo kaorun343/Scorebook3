@@ -1,6 +1,7 @@
 require('bulma/css/bulma.css')
 require('./app.scss')
 
+import 'ts-helpers'
 import Vue from 'vue'
 
 import store from './vuex/store'

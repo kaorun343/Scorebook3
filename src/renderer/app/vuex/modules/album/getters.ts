@@ -4,7 +4,7 @@ import State from './state'
 
 export default {
     albums({ albums }) {
-        return _.groupBy(albums, (album) => album.year)
+        return _.sortBy(albums, ['year', 'month']).reverse()
     },
     editor({ editor }) {
         return editor
