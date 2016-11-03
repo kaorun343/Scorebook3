@@ -1,6 +1,6 @@
 import { ActionTree } from 'vuex'
 import State from './state'
-import { Types } from '../../types'
+import { Types } from '../types'
 
 export default {
     createAlbum({ commit }, album) {

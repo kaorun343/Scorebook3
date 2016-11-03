@@ -1,7 +1,7 @@
 import * as Vue from 'vue'
 import { MutationTree } from 'vuex'
 import { EditorState } from '../editor'
-import { Types } from '../../types'
+import { Types } from '../types'
 import State, { Album } from './state'
 
 function clone(src: Album) {

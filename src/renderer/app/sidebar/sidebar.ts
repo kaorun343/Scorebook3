@@ -3,7 +3,7 @@ import Component from 'vue-class-component'
 import { mapActions, mapGetters } from 'vuex'
 import { remote } from 'electron'
 const { Menu } = remote
-import { Album } from '../vuex/modules/album/state'
+import { Album } from '../vuex/album/state'
 import Item from './item'
 
 @Component<Sidebar>({

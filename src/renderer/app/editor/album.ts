@@ -4,8 +4,8 @@ import { mapActions, mapState } from 'vuex'
 import Columns from '../../shared/bulma/columns'
 import Modal from '../../shared/bulma/modal'
 import Select, { Option } from './select'
-import State, { Album, AlbumState } from '../vuex/modules/album/state'
-import Editor, { EditorState } from '../vuex/modules/editor'
+import State, { Album, AlbumState } from '../vuex/album/state'
+import Editor, { EditorState } from '../vuex/editor'
 
 function* range(from: number, to: number) {
   if (from < to) {
@@ -24,9 +24,9 @@ const months = [...range(12, 1)].map(value => new Option(`${value}月`, value))
 const booleans = [new Option('いいえ', AlbumState.FALSE), new Option('はい', AlbumState.TRUE)]
 
 @Component<AlbumEditor>({
-  computed: mapState<{ albums: State }>({
-    editor: (state) => state.albums.editor,
-    album: (state) => state.albums.editor.data
+  computed: mapState<{ album: State }>({
+    editor: (state) => state.album.editor,
+    album: (state) => state.album.editor.data
   }),
   methods: mapActions(['storeAlbum', 'updateAlbum', 'cancelAlbum', 'changeAlbum']),
   render(h) {
