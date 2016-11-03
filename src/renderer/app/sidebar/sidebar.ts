@@ -4,31 +4,22 @@ import { mapActions, mapGetters } from 'vuex'
 import { remote } from 'electron'
 const { Menu } = remote
 import { Album } from '../vuex/modules/album/state'
+import Item from './item'
 
 @Component<Sidebar>({
   computed: mapGetters(['albums']),
   methods: mapActions(['createAlbum', 'editAlbum', 'destroyAlbum']),
   render(h) {
     const albums = this.albums.map((album) => {
-      return h('li',
-        {
-          on: {
-            contextmenu: (e: PointerEvent) => {
-              e.stopPropagation()
-              this.albumMenu(album)
-            }
+      return h(Item, {
+        props: { year: album.year, month: album.month } ,
+        nativeOn: {
+          contextmenu: (e: MouseEvent) => {
+            e.stopPropagation()
+            this.albumMenu(album)
           }
-        },
-        [
-          h('router-link', {
-            props: {
-              activeClass: 'is-active',
-              exact: true,
-              to: `/${album.year}/${album.month}`
-            }
-          }, album.title)
-        ]
-      )
+        }
+      })
     })
 
     return h('aside', { staticClass: 'menu', on: { contextmenu: this.sidebarMenu } }, [
@@ -62,18 +53,16 @@ export default class Sidebar extends Vue {
 
   albumMenu(album: Album) {
     Menu.buildFromTemplate([
-      {
-        label: '曲を追加する'
-      },
+      { label: '曲を追加する' },
       { type: 'separator' },
       {
-        label: 'アルバムを編集する',
+        label: '編集する',
         click: () => {
           this.editAlbum(album)
         }
       },
       {
-        label: 'アルバムを削除する',
+        label: '削除する',
         click: () => {
           this.destroyAlbum(album)
         }
