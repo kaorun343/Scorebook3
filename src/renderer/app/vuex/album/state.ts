@@ -1,14 +1,11 @@
 import Editor from '../editor'
-
-export const enum AlbumState {
-  FALSE, TRUE
-}
+import { Bool } from '../bool'
 
 export class Album {
     constructor(
         public year = new Date().getFullYear(),
         public month = 12,
-        public onLoan = AlbumState.FALSE
+        public onLoan = Bool.FALSE
     ) { }
 
     get title() {
@@ -18,6 +15,10 @@ export class Album {
 
 export default class State {
     public editor = new Editor(new Album(), 'アルバム')
+    public hero = {
+      title: '',
+      subtitle: ''
+    }
 
     constructor(
         public albums: { [key: string]: Album } = {}

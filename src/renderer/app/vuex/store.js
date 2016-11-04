@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import AlbumModule from './album/module'
+import SongModule from './song/module'
+
 // import {
 //   ADD_ALBUMS,
 //   OPEN_EDITOR, CLOSE_EDITOR,
@@ -170,7 +172,8 @@ const store = new Vuex.Store({
   // mutations,
   // state: new State(),
   modules: {
-    album: new AlbumModule()
+    album: new AlbumModule(),
+    song: new SongModule()
   }
 })
 

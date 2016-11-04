@@ -15,6 +15,7 @@ export enum Types {
 
     CLOSE_ALBUM,
 
+    INDEX_SONG,
     CREATE_SONG,
     STORE_SONG,
     EDIT_SONG,

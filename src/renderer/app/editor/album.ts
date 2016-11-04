@@ -4,8 +4,9 @@ import { mapActions, mapState } from 'vuex'
 import Columns from '../../shared/bulma/columns'
 import Modal from '../../shared/bulma/modal'
 import Select, { Option } from './select'
-import State, { Album, AlbumState } from '../vuex/album/state'
+import State, { Album } from '../vuex/album/state'
 import Editor, { EditorState } from '../vuex/editor'
+import { Bool } from '../vuex/bool'
 
 function* range(from: number, to: number) {
   if (from < to) {
@@ -21,7 +22,7 @@ function* range(from: number, to: number) {
 
 const years = [...range(new Date().getFullYear(), 1971)].map(value => new Option(`${value}年`, value))
 const months = [...range(12, 1)].map(value => new Option(`${value}月`, value))
-const booleans = [new Option('いいえ', AlbumState.FALSE), new Option('はい', AlbumState.TRUE)]
+const booleans = [new Option('いいえ', Bool.FALSE), new Option('はい', Bool.TRUE)]
 
 @Component<AlbumEditor>({
   computed: mapState<{ album: State }>({
