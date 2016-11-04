@@ -1,6 +1,7 @@
 'use strict'
 
 const HTMLWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: './src/renderer/app/app.js',
@@ -16,7 +17,7 @@ module.exports = {
       { test: /\.ts$/, loader: 'ts' },
       { test: /\.html$/, loader: 'vue-template' },
       { test: /\.css$/, loaders: ['style', 'css'] },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract(['css', 'sass']) },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url',
@@ -41,6 +42,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('[name].css'),
     new HTMLWebpackPlugin({
       template: './src/renderer/app/template.ejs'
     })
