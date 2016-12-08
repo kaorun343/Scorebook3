@@ -44,7 +44,7 @@ module.exports = {
   plugins: [
     new ExtractTextPlugin('[name].css'),
     new HTMLWebpackPlugin({
-      template: './src/renderer/app/template.ejs'
+      template: './template.ejs'
     })
   ],
   target: 'electron-renderer'
