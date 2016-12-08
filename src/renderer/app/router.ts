@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import * as Vue from 'vue'
+import * as VueRouter from 'vue-router'
 
 import Album from './album/album'
 
@@ -10,7 +10,7 @@ const Home = {
   render (h) {
     return h('div', {}, 'Home')
   }
-}
+} as Vue.ComponentOptions<Vue>
 
 const router = new VueRouter({
   mode: 'hash',

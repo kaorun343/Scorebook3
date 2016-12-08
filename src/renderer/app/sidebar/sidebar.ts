@@ -12,7 +12,7 @@ import Item from './item'
   render(h) {
     const albums = this.albums.map((album) => {
       return h(Item, {
-        props: { year: album.year, month: album.month } ,
+        props: { year: album.year, month: album.month },
         nativeOn: {
           contextmenu: (e: MouseEvent) => {
             e.stopPropagation()
@@ -23,11 +23,6 @@ import Item from './item'
     })
 
     return h('aside', { staticClass: 'menu', on: { contextmenu: this.sidebarMenu } }, [
-      h('p', { staticClass: 'menu-label' }, 'GENERAL'),
-      h('ul', { staticClass: 'menu-list' }, [
-        h('a', { attrs: { href: '#' } }, 'お気に入り'),
-        h('a', { attrs: { href: '#' } }, '検索')
-      ]),
       h('p', { staticClass: 'menu-label' }, 'ALBUMS'),
       h('ul', { staticClass: 'menu-list' }, albums)
     ])
