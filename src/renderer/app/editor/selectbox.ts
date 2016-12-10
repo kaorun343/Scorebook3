@@ -1,13 +1,13 @@
 import * as Vue from 'vue'
 import Component from 'vue-class-component'
+import { prop } from 'vue-property-decorator'
 import Column from '../../shared/bulma/column'
 
 export class Option {
   constructor(public text: string, public value: any) { }
 }
 
-@Component<Select>({
-  props: ['value', 'prefix', 'name', 'title', 'disabled'],
+@Component<Selectbox>({
   render(h) {
     const id = `${this.prefix}-${this.name}`
 
@@ -18,7 +18,7 @@ export class Option {
       },
       on: {
         change: (e: any) => {
-          this.$emit('change', e.target.value)
+          this.$emit('input', e.target.value)
         }
       }
     }, this.$slots['default'])
@@ -33,10 +33,19 @@ export class Option {
     ])
   }
 })
-export default class Select extends Vue {
+export default class Selectbox extends Vue {
+  @prop({ type: null })
   readonly prefix: string
+
+  @prop({ type: null })
   readonly name: string
+
+  @prop({ type: null })
   readonly title: string
+
+  @prop({ type: null })
   readonly disabled: boolean
+
+  @prop({ type: null })
   readonly value: any
 }

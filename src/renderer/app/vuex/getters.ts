@@ -4,9 +4,9 @@ import State from './state'
 
 export default {
     albums({ albums }) {
-        return _.sortBy(albums, ['year', 'month']).reverse()
+        return _.orderBy(albums, ['id'], ['desc'])
     },
-    editor({ editor }) {
-        return editor
+    albumEditor({ editors }) {
+      return editors.album
     }
 } as GetterTree<State, {}>

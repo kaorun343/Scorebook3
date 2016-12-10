@@ -1,12 +1,15 @@
 import * as Vue from 'vue'
 import Component from 'vue-class-component'
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import * as _ from 'lodash'
+import Column from '../../shared/bulma/column'
 import Columns from '../../shared/bulma/columns'
 import Modal from '../../shared/bulma/modal'
-import Select, { Option } from './select'
-import State, { Album } from '../vuex/album/state'
-import Editor, { EditorState } from '../vuex/editor'
-import { Bool } from '../vuex/bool'
+import Selectbox, { Option } from './selectbox'
+import State from '../vuex/state'
+import Editor, { EditorState } from '../data/Editor'
+import Album, { Place, placeToString } from '../data/Album'
+import * as template from './album.html'
 
 function* range(from: number, to: number) {
   if (from < to) {
@@ -20,90 +23,47 @@ function* range(from: number, to: number) {
   }
 }
 
-const years = [...range(new Date().getFullYear(), 1971)].map(value => new Option(`${value}年`, value))
-const months = [...range(12, 1)].map(value => new Option(`${value}月`, value))
-const booleans = [new Option('いいえ', Bool.FALSE), new Option('はい', Bool.TRUE)]
-
-@Component<AlbumEditor>({
-  computed: mapState<{ album: State }>({
-    editor: (state) => state.album.editor,
-    album: (state) => state.album.editor.data
-  }),
-  methods: mapActions(['storeAlbum', 'updateAlbum', 'cancelAlbum', 'changeAlbum']),
-  render(h) {
-    const Div = 'div'
-    const Button = 'button'
-    const prefix = 'album'
-
-    const { year, month, onLoan } = this.album
-    const disabled = this.isEditing
-
-    return h(Modal, { props: { show: this.editor.show, title: this.editor.title } }, [
-      h(Div, { slot: 'body' }, [
-        h(Columns, [
-          h(Select, {
-            props: { value: year, name: 'year', prefix, title: '発売年', disabled },
-            on: {
-              change: (value: string) => {
-                this.change('year', Number(value))
-              }
-            }
-          }, years.map(({text, value}) => h('option', { attrs: { value } }, text))),
-          h(Select, {
-            props: { value: month, name: 'month', prefix, title: '発売月', disabled },
-            on: {
-              change: (value: string) => {
-                this.change('month', Number(value))
-              }
-            }
-          }, months.map(({text, value}) => h('option', { attrs: { value } }, text))),
-          h(Select, {
-            props: { value: onLoan, name: 'on-loan', prefix, title: '貸出中', disabled: false },
-            on: {
-              change: (value: string) => {
-                this.change('onLoan', Number(value))
-              }
-            }
-          }, booleans.map(({text, value}) => h('option', { attrs: { value } }, text))),
-        ])
-      ]),
-      h(Div, { slot: 'footer' }, [
-        h(Button, {
-          staticClass: 'button is-primary',
-          on: { click: this.submit },
-          attrs: { disabled: !this.editor.valid }
-        }, '保存'),
-        h(Button, {
-          staticClass: 'button',
-          on: { click: this.cancel }
-        }, 'キャンセル')
-      ])
-    ])
+@Component(template<AlbumEditor>({
+  methods: mapActions(['storeAlbum', 'updateAlbum', 'cancelAlbum']),
+  computed: mapGetters({editor: 'albumEditor', albums: 'albums'}),
+  components: {
+    Column, Columns, Modal, Selectbox
   }
-})
+}))
 export default class AlbumEditor extends Vue {
 
-  storeAlbum: () => void
-  updateAlbum: () => void
-  cancelAlbum: () => void
-  changeAlbum: (context: { target: string, value: any }) => void
+  storeAlbum: (album: Album) => Promise<void>
+  updateAlbum: (album: Album) => Promise<void>
+  cancelAlbum: () => Promise<void>
 
-  editor: Editor<Album>
-  album: Album
+  album = Album.latest()
+  editor: Editor
+  albums: Album[]
+
+  years = [...range(new Date().getFullYear(), 1971)].map(value => new Option(`${value}年`, value))
+  months = [...range(12, 1)].map(value => new Option(`${value}月`, value))
+  places = [
+    new Option(placeToString(Place.MyHome), Place.MyHome),
+    new Option(placeToString(Place.FamilyHome), Place.FamilyHome),
+    new Option(placeToString(Place.OnLoan), Place.OnLoan)
+  ]
 
   get isEditing() {
     return this.editor.state === EditorState.EDITING
   }
 
-  change(target: string, value: any) {
-    this.changeAlbum({ target, value })
+  get valid() {
+    return _.every(this.albums, (album) => {
+      return album.id !== (this.album.year * 100 + this.album.month)
+    })
   }
 
   submit() {
+    const album = Album.clone(this.album)
     if (this.editor.state === EditorState.CREATING) {
-      this.storeAlbum()
+      this.storeAlbum(album)
     } else {
-      this.updateAlbum()
+      this.updateAlbum(album)
     }
   }
 

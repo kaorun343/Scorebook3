@@ -6,8 +6,6 @@
         "sourceMap": false,
         "strictNullChecks": true,
         "experimentalDecorators": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
         "noEmitHelpers": true,
         "allowJs": true,
         "emitDecoratorMetadata": false,

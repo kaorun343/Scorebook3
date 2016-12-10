@@ -1,27 +1,21 @@
-export enum Types {
-    ADD_ALBUMS,
+export const ADD_ALBUMS = 'ADD_ALBUMS'
 
-    INDEX_ALBUM,
-    CREATE_ALBUM,
-    STORE_ALBUM,
-    SHOW_ALBUM,
-    EDIT_ALBUM,
-    UPDATE_ALBUM,
-    DESTROY_ALBUM,
-    CANCEL_ALBUM,
+export const OPEN_EDITOR = 'OPEN_EDITOR'
+export const CLOSE_EDITOR = 'CLOSE_EDITOR'
 
-    CHANGE_ALBUM,
-    VALIDATE_ALBUM,
+export const SHOW_ALBUM = 'SHOW_ALBUM'
+export const CREATE_ALBUM = 'CREATE_ALBUM'
+export const STORE_ALBUM = 'STORE_ALBUM'
+export const EDIT_ALBUM = 'EDIT_ALBUM'
+export const UPDATE_ALBUM = 'UPDATE_ALBUM'
+export const DESTROY_ALBUM = 'DESTROY_ALBUM'
+export const CANCEL_ALBUM = 'CANCEL_ALBUM'
 
-    CLOSE_ALBUM,
+export const NEW_SONG = 'NEW_SONG'
+export const CREATE_SONG = 'CREATE_SONG'
+export const EDIT_SONG = 'EDIT_SONG'
+export const UPDATE_SONG = 'UPDATE_SONG'
+export const DESTROY_SONG = 'DESTROY_SONG'
 
-    INDEX_SONG,
-    CREATE_SONG,
-    STORE_SONG,
-    EDIT_SONG,
-    UPDATE_SONG,
-    DESTROY_SONG,
-
-    CHANGE_SONG,
-    CHECK_SONG
-}
+export const CHANGE_SONG = 'CHANGE_SONG'
+export const CHECK_SONG = 'CHECK_SONG'

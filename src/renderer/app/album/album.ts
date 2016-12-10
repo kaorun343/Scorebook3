@@ -1,13 +1,10 @@
 import * as Vue from 'vue'
 import Component from 'vue-class-component'
 import { mapActions, mapState } from 'vuex'
-import AlbumState from '../vuex/album/state'
-import SongState, { Song } from '../vuex/song/state'
 import Hero from '../../shared/bulma/hero'
-// import SongInfo from '../song/song'
 
 @Component<AlbumView>({
-  computed: mapState<{ album: AlbumState, song: SongState }>({
+  computed: mapState<{ album: any, song: any }>({
     hero: (state) => state.album.hero,
     songs: (state) => state.song.songs
   }),
@@ -32,7 +29,7 @@ import Hero from '../../shared/bulma/hero'
 })
 export default class AlbumView extends Vue {
   readonly hero: { title: string, subtitle: string }
-  readonly songs: Song[]
+  readonly songs: any[]
 
   showAlbum: () => Promise<void>
 }

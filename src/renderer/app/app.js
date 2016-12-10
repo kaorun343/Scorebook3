@@ -5,7 +5,7 @@ import 'ts-helpers'
 import Vue from 'vue'
 
 import store from './vuex/store'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 import router from './router'
 
@@ -23,7 +23,8 @@ const app = new Vue(require('./app.html')({
   created () {
     // this.initialize()
   },
-  methods: mapActions([])
+  methods: mapActions([]),
+  computed: mapGetters(['albumEditor'])
 }))
 
 app.$mount('#app')

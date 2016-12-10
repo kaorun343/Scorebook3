@@ -1,46 +1,20 @@
-<modal :show="editor.show" :title="editor.title">
+<modal :title="editor.title">
   <div slot="body">
     <columns>
-      <column>
-        <label class="label" for="album-year">発売年</label>
-        <p class="control">
-          <span class="select is-fullwidth">
-            <select name="album-year" :value="album.year" @change="change('year', $event)" :disabled="isEditing">
-              <option v-for="year in years" :value="year.value">
-                {{year.value}}年
-              </option>
-            </select>
-          </span>
-        </p>
-      </column>
-      <column>
-        <label class="label" for="album-month">発売月</label>
-        <p class="control">
-          <span class="select is-fullwidth">
-            <select name="album-month" :value="album.month" @change="change('month', $event)" :disabled="isEditing">
-              <option v-for="month in months" :value="month.value">
-                {{month.value}}月
-              </option>
-            </select>
-          </span>
-        </p>
-      </column>
-      <column>
-        <label class="label" for="album-on-loan">貸出中</label>
-        <p class="control">
-          <span class="select is-fullwidth">
-            <select name="album-on-loan" :value="album.onLoan" @change="change('onLoan', $event)">
-              <option :value="true">はい</option>
-              <option :value="false">いいえ</option>
-            </select>
-          </span>
-        </p>
-      </column>
+      <selectbox prefix="album" name="year" title="発売年" :disabled="isEditing" v-model.number="album.year">
+        <option v-for="year in years" :value="year.value">{{year.value}}年</option>
+      </selectbox>
+      <selectbox prefix="album" name="month" title="発売月" :disabled="isEditing" v-model.number="album.month">
+        <option v-for="month in months" :value="month.value">{{month.value}}月</option>
+      </selectbox>
+      <selectbox prefix="album" name="place" title="場所" :disabled="isEditing" v-model.number="album.place">
+        <option v-for="place in places" :value="place.value">{{place.text}}</option>
+      </selectbox>
     </columns>
   </div>
 
   <div slot="footer">
-    <a class="button is-primary" @click="submit" :disabled="!editor.valid">保存</a>
+    <a class="button is-primary" @click="submit" :disabled="!valid">保存</a>
     <button class="button" @click="cancel">キャンセル</button>
   </div>
 </modal>
